@@ -1,0 +1,54 @@
+[
+    {
+      "UserName": "james@yahoo.com",
+      "Password": "password",
+      "FullName": "James McJames",
+      "Listings": [
+        {
+            "PostedDate": "2019-07-27",
+            "ExpiryDate": "2019-09-27",
+            "Address": "102 Seagram Drive, Waterloo ON",
+            "Phone": "416-967-1111",
+            "Title": "Luxury 2 bedroom suite for rent!",
+            "Description": "Aliqua nisi labore tempor adipisicing. Lorem in ut enim quis dolor magna commodo nisi ad voluptate et excepteur aliqua. Ea nostrud velit laborum sit nisi cillum proident nisi.\r\n",
+            "Price": 700.00,
+            "Likes": 5,
+            "Photos": [
+                {
+                    "PhotoUrl": "https://randomuser.me/api/portraits/men/14.jpg",
+                    "IsMain": true
+                }
+            ]
+        }
+      ]
+    },
+    {
+      "UserName": "mike@yahoo.com",
+      "Password": "password",
+      "FullName": "Mike McMike",
+      "Listings": [
+        {
+            "PostedDate": "2019-07-27",
+            "ExpiryDate": "2019-09-27",
+            "Address": "101 University Avenue West, Waterloo ON",
+            "Phone": "416-555-5555",
+            "Title": "New University Avenue Condo",
+            "Description": "Aliqua nisi labore tempor adipisicing. Lorem in ut enim quis dolor magna commodo nisi ad voluptate et excepteur aliqua. Ea nostrud velit laborum sit nisi cillum proident nisi.\r\n",
+            "Price": 900.00,
+            "Likes": 8,
+            "Photos": [
+                {
+                    "PhotoUrl": "https://randomuser.me/api/portraits/men/76.jpg",
+                    "IsMain": true
+                },
+                {
+                    "PhotoUrl": "https://randomuser.me/api/portraits/men/71.jpg",
+                    "IsMain": false
+                }
+            ]
+        }
+      ]
+    }
+]
+    
+    
