@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 
 import { NgxGalleryModule } from 'ngx-gallery';
@@ -24,6 +24,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ListingDetailComponent } from './listingfolder/listing-detail/listing-detail.component';
 import { ListingDetailResolver } from './_resolvers/listing-detail.resolver';
 import { ListingsResolver } from './_resolvers/listings.resolver';
+import { MylistingsComponent } from './listingfolder/mylistings/mylistings.component';
+import { MylistingsResolver } from './_resolvers/mylistings.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -39,7 +41,8 @@ export function tokenGetter() {
       MapComponent,
       ListingsComponent,
       ListingCardComponent,
-      ListingDetailComponent
+      ListingDetailComponent,
+      MylistingsComponent
    ],
    imports: [
       BrowserModule,
@@ -55,7 +58,8 @@ export function tokenGetter() {
             blacklistedRoutes: ['localhost:5001/api/auth']
          }
       }),
-      NgxGalleryModule
+      NgxGalleryModule,
+      ReactiveFormsModule
    ],
    providers: [
       AuthService,
@@ -64,7 +68,8 @@ export function tokenGetter() {
       AuthGuard,
       ListingService,
       ListingDetailResolver,
-      ListingsResolver
+      ListingsResolver,
+      MylistingsResolver
    ],
    bootstrap: [
       AppComponent

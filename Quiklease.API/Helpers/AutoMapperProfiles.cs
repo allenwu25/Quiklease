@@ -14,6 +14,7 @@ namespace Quiklease.API.Helpers
                 opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).PhotoUrl);
             });
             CreateMap<Photo, PhotoForDetailDto>();
+            CreateMap<UserForRegisterDto, User>();
         }
     }
 }

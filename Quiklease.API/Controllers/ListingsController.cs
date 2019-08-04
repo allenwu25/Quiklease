@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -25,6 +26,16 @@ namespace Quiklease.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetListings() {
             var listings = await _repo.GetListings();
+            var listingstoreturn = _mapper.Map<IEnumerable<ListingForListDto>>(listings);
+            return Ok(listingstoreturn);
+        }
+
+        [HttpGet("mylistings/{userid}")]
+        public async Task<IActionResult> GetUserListings(int userid) {
+            if(userid != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
+                return Unauthorized();
+            }
+            var listings = await _repo.GetUserListings(userid);
             var listingstoreturn = _mapper.Map<IEnumerable<ListingForListDto>>(listings);
             return Ok(listingstoreturn);
         }

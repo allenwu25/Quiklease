@@ -49,6 +49,15 @@ namespace Quiklease.API.Data
             return user;
         }
 
+        public async Task<IEnumerable<Listing>> GetUserListings(int userid)
+        {
+            var listings = await _context.Listings
+            .Include(l => l.Photos)
+            .Where(l => l.UserId == userid)
+            .ToListAsync();
+            return listings;
+        }
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             var users = await _context.Users

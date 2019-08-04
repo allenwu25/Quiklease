@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Quiklease.API.Dtos;
+using AutoMapper;
 
 namespace Quiklease.API.Controllers
 {
@@ -18,10 +19,13 @@ namespace Quiklease.API.Controllers
     {
        private readonly IAuthRepository _repo;
        private readonly IConfiguration _config;
-       public AuthController(IAuthRepository repo, IConfiguration config)
+       private readonly IMapper _mapper;
+       public AuthController(IAuthRepository repo, IConfiguration config,
+       IMapper mapper)
        {
            _repo = repo;
            _config = config;
+           _mapper = mapper;
        }
 
        [HttpPost("register")]
@@ -31,10 +35,10 @@ namespace Quiklease.API.Controllers
             if (await _repo.UserExists(userForRegisterDto.Username)) {
                 return BadRequest("User already exisits");
             }
-            var usertocreate = new User();
-            usertocreate.UserName = userForRegisterDto.Username;
+            var usertocreate = _mapper.Map<User>(userForRegisterDto);
             var createdUser = await _repo.Register(usertocreate, userForRegisterDto.Password);
-            return StatusCode(201);
+            
+            return CreatedAtRoute("GetUser", new {Controller="Users", id=createdUser.Id}, createdUser);
        }
 
        [HttpPost("login")]

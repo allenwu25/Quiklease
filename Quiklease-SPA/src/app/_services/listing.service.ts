@@ -17,6 +17,10 @@ constructor(private http: HttpClient) { }
     return this.http.get<Listing[]>(this.baseUrl + 'listings');
   }
 
+  getUserListings(userid): Observable<Listing[]> {
+    return this.http.get<Listing[]>(this.baseUrl + 'listings/mylistings/' + userid);
+  }
+
   getListing(id): Observable<Listing> {
     return this.http.get<Listing>(this.baseUrl + 'listings/' + id);
   }

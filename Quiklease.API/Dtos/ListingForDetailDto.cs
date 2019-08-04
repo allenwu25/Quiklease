@@ -19,6 +19,9 @@ namespace Quiklease.API.Dtos
         public ICollection<PhotoForDetailDto> Photos {get; set;}
         public User User {get; set;}
         public int UserId {get; set;}
-
+        public DateTime RentFrom {get; set;}
+        public DateTime RentUntil {get; set;}
+        public int RoomsAvailable {get; set;}
+        public string BuildingType {get; set;}
     }
 }

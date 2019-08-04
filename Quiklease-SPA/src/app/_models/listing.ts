@@ -11,6 +11,10 @@ export interface Listing {
     photoUrl: string;
     price: number;
     likes: number;
+    rentFrom: Date;
+    rentUntil: Date;
+    roomsAvailable: number;
+    buildingType: string;
 
     photos?: Photo[];
 

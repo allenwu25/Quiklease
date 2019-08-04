@@ -13,6 +13,7 @@ namespace Quiklease.API.Data
          Task<User> GetUser(int id);
 
          Task<IEnumerable<Listing>> GetListings();
+         Task<IEnumerable<Listing>> GetUserListings(int userid);
          Task<Listing> GetListing(int id);
     }
 }
