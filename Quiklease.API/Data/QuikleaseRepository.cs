@@ -28,6 +28,7 @@ namespace Quiklease.API.Data
             var listing = await _context.Listings
             .Include(l => l.Photos)
             .FirstOrDefaultAsync(l => l.Id == id);
+            
             return listing;
         }
 
@@ -40,14 +41,7 @@ namespace Quiklease.API.Data
             return listings;
         }
 
-        public async Task<User> GetUser(int id)
-        {
-            var user = await _context.Users
-            .Include(u => u.Listings)
-            .ThenInclude(l => l.Photos)
-            .FirstOrDefaultAsync(u => u.Id == id);
-            return user;
-        }
+        
 
         public async Task<IEnumerable<Listing>> GetUserListings(int userid)
         {
@@ -58,6 +52,17 @@ namespace Quiklease.API.Data
             return listings;
         }
 
+
+
+        public async Task<User> GetUser(int id)
+        {
+            var user = await _context.Users
+            .Include(u => u.Listings)
+            .ThenInclude(l => l.Photos)
+            .FirstOrDefaultAsync(u => u.Id == id);
+            return user;
+        }
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             var users = await _context.Users
@@ -66,6 +71,19 @@ namespace Quiklease.API.Data
             .OrderByDescending(u => u.FullName)
             .ToListAsync();
             return users;
+        }
+
+        public async Task<Photo> GetPhoto(int id) {
+            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+            return photo;
+        }
+
+        public async Task<Photo> GetMainPhotoForListing(int listingId)
+        {
+            return await _context.Photos
+            .Where(l => l.ListingId == listingId)
+            .FirstOrDefaultAsync(p => p.IsMain);
+
         }
 
         public async Task<bool> SaveAll()

@@ -15,5 +15,7 @@ namespace Quiklease.API.Data
          Task<IEnumerable<Listing>> GetListings();
          Task<IEnumerable<Listing>> GetUserListings(int userid);
          Task<Listing> GetListing(int id);
+         Task<Photo> GetPhoto(int id);
+         Task<Photo> GetMainPhotoForListing(int listinId);
     }
 }

@@ -14,6 +14,7 @@ export class ListingDetailComponent implements OnInit {
   listing: Listing;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  numberphotos: number;
   
   constructor(private listingService: ListingService,
               private alertify: AlertifyService,
@@ -46,6 +47,7 @@ export class ListingDetailComponent implements OnInit {
         description: ''
       });
     }
+    this.numberphotos = imageUrls.length;
     
     return imageUrls;
   }

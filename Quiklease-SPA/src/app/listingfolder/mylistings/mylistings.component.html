@@ -1,7 +1,11 @@
-
+<li class="nav-item" routerLinkActive="active">
+  <a class="nav-link" [routerLink]="['/add']">My Postings</a>
+</li>
 
 <div class="test" *ngFor="let listing of listings">
   <h1>{{listing.title}}</h1>
   <h1>{{listing.address}}</h1>
   <h1>{{listing.buildingType}}</h1>
+  <li class="list-inline-item"><button class="btn btn-primary" 
+    [routerLink]="['/mylistings/', listing.id]"><i class="fa fa-user"></i></button></li>
 </div>

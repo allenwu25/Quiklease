@@ -16,6 +16,7 @@ import { AlertifyService } from './_services/alertify.service';
 import { MapComponent } from './map/map.component';
 import { ListingsComponent } from './listingfolder/listings/listings.component';
 import { RouterModule } from '@angular/router';
+import { FileUploadModule } from 'ng2-file-upload';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { ListingService } from './_services/listing.service';
@@ -26,6 +27,10 @@ import { ListingDetailResolver } from './_resolvers/listing-detail.resolver';
 import { ListingsResolver } from './_resolvers/listings.resolver';
 import { MylistingsComponent } from './listingfolder/mylistings/mylistings.component';
 import { MylistingsResolver } from './_resolvers/mylistings.resolver';
+import { MylistingsAddComponent } from './listingfolder/mylistings-add/mylistings-add.component';
+import { PhotoEditorComponent } from './listingfolder/photo-editor/photo-editor.component';
+import { MylistingsEditComponent } from './listingfolder/mylistings-edit/mylistings-edit.component';
+import { MylistingsEditResolver } from './_resolvers/mylistings-edit.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -42,7 +47,10 @@ export function tokenGetter() {
       ListingsComponent,
       ListingCardComponent,
       ListingDetailComponent,
-      MylistingsComponent
+      MylistingsComponent,
+      MylistingsAddComponent,
+      MylistingsEditComponent,
+      PhotoEditorComponent
    ],
    imports: [
       BrowserModule,
@@ -59,6 +67,7 @@ export function tokenGetter() {
          }
       }),
       NgxGalleryModule,
+      FileUploadModule,
       ReactiveFormsModule
    ],
    providers: [
@@ -69,7 +78,8 @@ export function tokenGetter() {
       ListingService,
       ListingDetailResolver,
       ListingsResolver,
-      MylistingsResolver
+      MylistingsResolver,
+      MylistingsEditResolver
    ],
    bootstrap: [
       AppComponent
