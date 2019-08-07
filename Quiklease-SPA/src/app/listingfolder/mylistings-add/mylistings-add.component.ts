@@ -29,9 +29,10 @@ export class MylistingsAddComponent implements OnInit {
       phone: ['', Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
+      rentFrom: ['', Validators.required],
+      rentUntil: ['', Validators.required],
       price: ['', Validators.required],
-      photoUrl: ['', Validators.required],
-      buildingType: ['', Validators.required],
+      buildingType: [''],
       roomsAvailable: ['', Validators.required]
     });
   }

@@ -45,6 +45,19 @@ export class PhotoEditorComponent implements OnInit {
     });
 
     this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false;}
+
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if (response) {
+        const res: Photo = JSON.parse(response);
+        const photo = {
+          id: res.id,
+          photoUrl: res.photoUrl,
+          dateAdded: res.dateAdded,
+          isMain: res.isMain
+        };
+        this.photos.push(photo);
+      }
+    }
   }
 
   setMainPhoto(photo: Photo) {
@@ -55,6 +68,17 @@ export class PhotoEditorComponent implements OnInit {
       photo.isMain = true;
     }, error => {
       this.alertify.error(error);
+    })
+  }
+
+  deletePhoto(id: number) {
+    this.alertify.confirm("Do you wish to delete this photo?", () => {
+      this.listingService.deletePhoto(this.listingId, id).subscribe(() => {
+        this.photos.splice(this.photos.findIndex(p => p.id == id), 1);
+        this.alertify.success("Photo has been deleted");
+      }, error => {
+        this.alertify.error(error);
+      })
     })
   }
 

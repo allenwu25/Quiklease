@@ -32,4 +32,15 @@ export class MylistingsComponent implements OnInit {
 
   }
 
+  deleteListing(id) {
+    this.alertify.confirm("Do you wish to delete this listing?", () => {
+      this.listingService.deleteListing(id).subscribe(() => {
+        this.listings.splice(this.listings.findIndex(l => l.id == id), 1);
+        this.alertify.success("Listing has been deleted");
+      }, error => {
+        this.alertify.error(error);
+      })
+    })
+  }
+
 }

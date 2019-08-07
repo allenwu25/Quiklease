@@ -12,14 +12,16 @@ import { MylistingsResolver } from './_resolvers/mylistings.resolver';
 import { MylistingsAddComponent } from './listingfolder/mylistings-add/mylistings-add.component';
 import { MylistingsEditComponent } from './listingfolder/mylistings-edit/mylistings-edit.component';
 import { MylistingsEditResolver } from './_resolvers/mylistings-edit.resolver';
+import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
+    { path: 'login', component: LoginComponent},
     { path: 'listings', component: ListingsComponent, canActivate: [AuthGuard], resolve: {listings: ListingsResolver}},
     { path: 'listings/:id', component: ListingDetailComponent, canActivate: [AuthGuard], resolve: {listing: ListingDetailResolver}},
     { path: 'mylistings', component: MylistingsComponent, canActivate: [AuthGuard], resolve: {listings: MylistingsResolver}},
     { path: 'mylistings/:id', component: MylistingsEditComponent, canActivate: [AuthGuard], resolve: {listing: MylistingsEditResolver}},
-    { path: 'add', component: MylistingsAddComponent, canActivate: [AuthGuard], resolve: {listing: MylistingsEditResolver}},
+    { path: 'add', component: MylistingsAddComponent, canActivate: [AuthGuard]},
     { path: 'map', component: MapComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: 'home', pathMatch: 'full'}
 ]

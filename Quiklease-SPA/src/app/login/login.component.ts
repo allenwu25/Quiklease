@@ -4,11 +4,11 @@ import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class NavComponent implements OnInit {
+export class LoginComponent implements OnInit {
   model: any = {};
   constructor(public authService: AuthService, private alertifyService: AlertifyService,
     private router: Router) { }
@@ -29,10 +29,5 @@ export class NavComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.alertifyService.message('Logged out');
-    this.router.navigate(['/']);
-  }
 
 }

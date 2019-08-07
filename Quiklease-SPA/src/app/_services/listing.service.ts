@@ -37,4 +37,13 @@ constructor(private http: HttpClient) { }
   setMainPhoto(listingId: number, id: number) {
     return this.http.post(this.baseUrl + 'listings/' + listingId + '/photos/' + id + '/setMain', {});
   }
+
+  deletePhoto(listingId: number, id: number) {
+    return this.http.delete(this.baseUrl + 'listings/' + listingId + '/photos/' + id);
+  }
+
+  deleteListing(listingId: number) {
+    return this.http.delete(this.baseUrl + 'listings/' + listingId);
+  }
+
 }

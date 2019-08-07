@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using CloudinaryDotNet;
@@ -117,5 +118,41 @@ namespace Quiklease.API.Controllers
             }
 
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePhoto(int listingId, int id) {
+
+            var listing = await _repo.GetListing(listingId);
+            if(!listing.Photos.Any(p => p.Id == id)) {
+                return Unauthorized();
+            }
+
+            var photoFromRepo = await _repo.GetPhoto(id);
+            if(photoFromRepo.IsMain) {
+                return BadRequest("You can't delete your main photo");
+            }
+
+            if (photoFromRepo.PublicId != null) {
+                var deleteParams = new DeletionParams(photoFromRepo.PublicId);
+                var result = _cloudinary.Destroy(deleteParams);
+                if(result.Result == "ok") 
+                {
+                    listing.Photos.Remove(photoFromRepo);
+                }
+            }
+            if (photoFromRepo.PublicId == null) {
+                _repo.Delete(photoFromRepo);
+            }
+
+            
+            if(await _repo.SaveAll()) {
+                return Ok();
+            }
+            return BadRequest("Failed to delete photo");
+
+        }
+
+
+
     }
 }

@@ -1,81 +1,142 @@
 
-
-<form [formGroup]="addForm" (ngSubmit)="addformlisting()">
-    <h2 class="text-center text-primary">Add New Listing</h2>
-    <hr>
-  
-    <div class="form-group">
-      <input type="text" 
-      [ngClass]="{'is-invalid' : addForm.get('address').errors && addForm.get('address').touched}"
-      class="form-control" 
-      formControlName="address" 
-      placeholder="address">
-      <div class="invalid-feedback"> Please choose a username</div>
-    </div>
-    <div class="form-group">
-        <input type="text" 
-        [ngClass]="{'is-invalid' : addForm.get('phone').errors && addForm.get('phone').touched}"
-        class="form-control" 
-        formControlName="phone" 
-        placeholder="phone">
-        <div class="invalid-feedback"> Please choose a username</div>
-      </div>
-      <div class="form-group">
-          <input type="text" 
-          [ngClass]="{'is-invalid' : addForm.get('title').errors && addForm.get('title').touched}"
-          class="form-control" 
-          formControlName="title" 
-          placeholder="title">
-          <div class="invalid-feedback"> Please choose a title</div>
-      </div>
-      <div class="form-group">
-          <input type="text" 
-          [ngClass]="{'is-invalid' : addForm.get('description').errors && addForm.get('description').touched}"
-          class="form-control" 
-          formControlName="description" 
-          placeholder="description">
-          <div class="invalid-feedback"> Please choose a title</div>
-      </div>
-
-      <div class="form-group">
-          <input type="text" 
-          [ngClass]="{'is-invalid' : addForm.get('price').errors && addForm.get('price').touched}"
-          class="form-control" 
-          formControlName="price" 
-          placeholder="price">
-          <div class="invalid-feedback"> Please choose a title</div>
-      </div>
-      <div class="form-group">
-          <input type="text" 
-          [ngClass]="{'is-invalid' : addForm.get('photoUrl').errors && addForm.get('photoUrl').touched}"
-          class="form-control" 
-          formControlName="photoUrl" 
-          placeholder="photoUrl">
-          <div class="invalid-feedback"> Please choose a photoUrl</div>
-      </div>
-      <div class="form-group">
-          <input type="text" 
-          [ngClass]="{'is-invalid' : addForm.get('buildingType').errors && addForm.get('buildingType').touched}"
-          class="form-control" 
-          formControlName="buildingType" 
-          placeholder="buildingType">
-          <div class="invalid-feedback"> Please choose a buildingType</div>
-      </div>
-      <div class="form-group">
-          <input type="text" 
-          [ngClass]="{'is-invalid' : addForm.get('roomsAvailable').errors && addForm.get('roomsAvailable').touched}"
-          class="form-control" 
-          formControlName="roomsAvailable" 
-          placeholder="roomsAvailable">
-          <div class="invalid-feedback"> Please choose a roomsAvailable</div>
-      </div>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+      <form class="addformclass" [formGroup]="addForm" (ngSubmit)="addformlisting()">
+          <h2 class="text-center text-primary mt-3">Add New Listing</h2>
+          <hr>
       
+      
+          <div class="mt-3">
+            <label for="title">Listing Title</label>
+            <div class="input-group">
+                <input type="text" 
+                [ngClass]="{'is-invalid' : addForm.get('title').errors && addForm.get('title').touched}"
+                class="form-control" 
+                formControlName="title" 
+                placeholder="Listing Title">
+                <div class="invalid-feedback"> Please choose a listing title</div>
+            </div>
+          </div>
+      
+          <div class="mt-3">
+              <label for="username">Listing Description</label>
+              <div class="input-group">
+                  <input type="text" 
+                  [ngClass]="{'is-invalid' : addForm.get('description').errors && addForm.get('description').touched}"
+                  class="form-control" 
+                  formControlName="description" 
+                  placeholder="Listing Description">
+                  <div class="invalid-feedback"> Please enter a description</div>
+              </div>
+            </div>
+      
+            <div class="mt-3">
+                <label for="username">Listing Address</label>
+                <div class="input-group">
+                    <input type="text" 
+                    [ngClass]="{'is-invalid' : addForm.get('address').errors && addForm.get('address').touched}"
+                    class="form-control" 
+                    formControlName="address" 
+                    placeholder="Listing Address">
+                  <div class="invalid-feedback" style="width: 100%;">
+                    Listing address is required.
+                  </div>
+                </div>
+            </div>
+      
+            <div class="row mt-3">
+                <div class="col-md-6">
+                  <label for="email">Tenant move in date</label>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                      </div>
+                      <input type="date" 
+                    [ngClass]="{'is-invalid' : addForm.get('rentFrom').errors && addForm.get('rentFrom').touched}"
+                    class="form-control" 
+                    formControlName="rentFrom" 
+                    >
+                  <div class="invalid-feedback" style="width: 100%;">
+                    Move in date is required.
+                  </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="address">Tenant move out date</label>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                      </div>
+                      <input type="date" 
+                        [ngClass]="{'is-invalid' : addForm.get('rentUntil').errors && addForm.get('rentUntil').touched}"
+                        class="form-control" 
+                        formControlName="rentUntil" 
+                        >
+                      <div class="invalid-feedback" style="width: 100%;">
+                        Move out date is required.
+                      </div>
+                    </div>
+                </div>
+              </div>
+      
+              <div class="row mt-3">
+                  <div class="col-md-5 mb-3">
+                    <label for="buildingType">Building Type</label>
+                    <select formControlName="description" class="custom-select d-block w-100" id="buildingType">
+                      <option value>Apartment / Condominium</option>
+                      <option>Detached House</option>
+                      <option>Semi-Detached House</option>
+                      <option>Townhouse</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="state">Price per month</label>
+                    <input 
+                    type="number" 
+                    class="form-control" 
+                    [ngClass]="{'is-invalid' : addForm.get('price').errors && addForm.get('price').touched}"
+                    formControlName="price">
+                    <div class="invalid-feedback">
+                      Please provide a price
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label for="zip">Rooms for Rent</label>
+                    <input 
+                    type="number" 
+                    class="form-control" 
+                    [ngClass]="{'is-invalid' : addForm.get('roomsAvailable').errors && addForm.get('roomsAvailable').touched}"
+                    formControlName="roomsAvailable">
+                    <div class="invalid-feedback">
+                      Please provide rooms available
+                    </div>
+                  </div>
+                </div>
+      
+                <h4 class="mt-3">Your Contact Information</h4><br>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="address2">Your Email Address</label>
+                  
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="address2">Your Phone Number <span class="text-muted">(Optional)</span></label>
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    [ngClass]="{'is-invalid' : addForm.get('phone').errors && addForm.get('phone').touched}"
+                    formControlName="phone">
+                    <div class="invalid-feedback">
+                      Please provide a phone number
+                    </div>
+                  </div>
+              </div>
+              <hr class="mb-4">
+              <button class="btn btn-success btn-lg btn-block mb-12" [disabled]="!addForm.valid" type="submit">ADD LISTING</button>
+              
+      </form>
+  </div>
+  <div class="col-md-2"></div>
+</div>
 
-  
-  
-  
-    <div class="form-group text-center">
-      <button class="btn btn-success" [disabled]="!addForm.valid" type="submit">Add Listing</button>
-    </div>
-    
-  </form>

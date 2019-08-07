@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Quiklease.API.Data;
 using Quiklease.API.Dtos;
+using Quiklease.API.Helpers;
 using Quiklease.API.Models;
 
 namespace Quiklease.API.Controllers
@@ -20,9 +24,21 @@ namespace Quiklease.API.Controllers
         
         private readonly IQuikleaseRepository _repo;
         private readonly IMapper _mapper;
-        public ListingsController(IQuikleaseRepository repo, IMapper mapper) {
-            _repo = repo;
-            _mapper = mapper;
+        private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
+        private Cloudinary _cloudinary;
+        public ListingsController(IQuikleaseRepository repo, IMapper mapper,
+        IOptions<CloudinarySettings> cloudinaryConfig) {
+                this._cloudinaryConfig = cloudinaryConfig;
+                this._mapper = mapper;
+                this._repo = repo;
+
+                Account acc = new Account(
+                    _cloudinaryConfig.Value.CloudName,
+                    _cloudinaryConfig.Value.ApiKey,
+                    _cloudinaryConfig.Value.ApiSecret
+                );
+
+                _cloudinary = new Cloudinary(acc);
         }
 
         [HttpGet]
@@ -79,6 +95,34 @@ namespace Quiklease.API.Controllers
             else {
                 throw new Exception($"updating user {id} failed on save");
             }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteListing(int id)
+        {
+            var listingfromrepo = await _repo.GetListing(id);
+            ICollection<Photo> photos = listingfromrepo.Photos;
+            foreach(var photoFromRepo in photos) {
+                if (photoFromRepo.PublicId != null) {
+                    var deleteParams = new DeletionParams(photoFromRepo.PublicId);
+                    var result = _cloudinary.Destroy(deleteParams);
+                    if(result.Result == "ok") 
+                    {
+                        listingfromrepo.Photos.Remove(photoFromRepo);
+                    }
+                }
+                if (photoFromRepo.PublicId == null) {
+                    _repo.Delete(photoFromRepo);
+                }
+            }
+
+            _repo.Delete(listingfromrepo);
+
+            if(await _repo.SaveAll()) {
+                return Ok();
+            }
+            return BadRequest("Failed to delete listing");
+
         }
 
     }

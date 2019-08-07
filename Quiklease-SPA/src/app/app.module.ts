@@ -31,6 +31,7 @@ import { MylistingsAddComponent } from './listingfolder/mylistings-add/mylisting
 import { PhotoEditorComponent } from './listingfolder/photo-editor/photo-editor.component';
 import { MylistingsEditComponent } from './listingfolder/mylistings-edit/mylistings-edit.component';
 import { MylistingsEditResolver } from './_resolvers/mylistings-edit.resolver';
+import { LoginComponent } from './login/login.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -50,7 +51,8 @@ export function tokenGetter() {
       MylistingsComponent,
       MylistingsAddComponent,
       MylistingsEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      LoginComponent
    ],
    imports: [
       BrowserModule,
