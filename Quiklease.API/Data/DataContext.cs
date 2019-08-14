@@ -11,6 +11,6 @@ namespace Quiklease.API.Data
         public DbSet<User> Users {get; set;}
         public DbSet<Listing> Listings {get; set;}
         public DbSet<Photo> Photos {get; set;}
-        
+
     }
 }

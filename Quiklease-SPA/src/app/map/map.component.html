@@ -1,3 +1,9 @@
-<p>
-  map works!
-</p>
+<h2 class="text-primary text-center">Map of All Listings</h2>
+<agm-map [zoom]="14" [latitude]="latitude" [longitude]="longitude">
+  <agm-marker *ngFor="let marker of locations" [label]="mylabel" [latitude]="marker.latitude" [longitude]="marker.longitude">
+      <agm-info-window>
+          <a target='_blank' href='/listings/{{marker.urlid}}'><strong>{{marker.title}}</strong></a><br>
+          {{marker.address}}
+        </agm-info-window>
+  </agm-marker>
+</agm-map>

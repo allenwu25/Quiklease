@@ -1,7 +1,6 @@
 <div class="container mt-4">
-    <div class="row">
-      <h1>{{listing.address}}</h1>
-    </div>
+      <h2>{{listing.title}}</h2><br>
+      <h4>{{listing.address}}</h4>
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
@@ -9,16 +8,10 @@
           [src]="numberphotos==0? '../../../assets/default.jpg' : listing.photoUrl">
           <div class="card-body">
             <div>
-              <strong>Location:</strong>
-              <p>
-                {{listing.address}}
-              </p>
+              <h5>Posted {{listing.postedDate | date}} by {{user.fullName}}</h5>
+              <h5>Email seller at {{user.userName}}</h5>
             </div>
             <div>
-              <strong>Listing Posted:</strong>
-              <p>
-                {{listing.postedDate}}
-              </p>
             </div>
           </div>
           <div class="card-footer">
@@ -34,8 +27,14 @@
         <div class="tab-panel">
           <tabset class="member-tabset">
             <tab heading="About this listing:">
-              <h4>Description</h4>
               <p>{{listing.description}}</p>
+              <h4 class="mt-2 text-primary">Details</h4>
+              <i class="fa fa-map-marker"></i>&nbsp;<strong>Address: </strong> {{listing.address}}<br><br>
+              <i class="fa fa-dollar"></i>&nbsp;<strong>Price: </strong> {{listing.price | currency }}<br><br>
+              <i class="fa fa-calendar"></i>&nbsp;<strong>Rental Period: </strong> {{listing.rentFrom | date}} - {{listing.rentUntil | date}}<br><br>
+              
+              <i class="fa fa-user"></i>&nbsp;<strong>Rooms available: </strong> {{listing.roomsAvailable}} &nbsp;&nbsp;
+              <i class="{{listing.buildingType == 'House'? 'fa fa-home' : 'fa fa-building'}}"></i><strong>Building Type: </strong> {{listing.buildingType}}
             </tab>
             <tab heading="Photos">
               <h4>Photos</h4>

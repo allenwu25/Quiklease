@@ -4,6 +4,8 @@ import { ListingService } from 'src/app/_services/listing.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
+import { User } from 'src/app/_models/user';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-listing-detail',
@@ -15,8 +17,9 @@ export class ListingDetailComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   numberphotos: number;
-  
+  user: User;
   constructor(private listingService: ListingService,
+              private authService: AuthService,
               private alertify: AlertifyService,
               private route: ActivatedRoute) { }
 
@@ -24,6 +27,11 @@ export class ListingDetailComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.listing = data['listing'];
     });
+    this.listingService.getUsers(this.listing.userId).subscribe((userresult)=> {
+      this.user = userresult;
+    }, error => {
+      this.alertify.error(error);
+    })
     this.galleryOptions = [
       {
         width: '500px',

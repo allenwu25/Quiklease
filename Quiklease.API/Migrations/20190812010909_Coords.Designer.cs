@@ -9,8 +9,8 @@ using Quiklease.API.Data;
 namespace Quiklease.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190805014134_Photoupdate")]
-    partial class Photoupdate
+    [Migration("20190812010909_Coords")]
+    partial class Coords
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,11 @@ namespace Quiklease.API.Migrations
 
                     b.Property<DateTime>("ExpiryDate");
 
+                    b.Property<decimal>("Latitude");
+
                     b.Property<int>("Likes");
+
+                    b.Property<decimal>("Longitude");
 
                     b.Property<string>("Phone");
 

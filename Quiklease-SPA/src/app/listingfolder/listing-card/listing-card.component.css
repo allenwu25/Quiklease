@@ -1,5 +1,5 @@
 .card:hover img {
-    transform: scale(1.2, 1.2);
+    transform: scale(1.03, 1.03);
     transition-duration: 500ms;
     transition-timing-function: ease-out;
     opacity:0.7;
@@ -33,4 +33,50 @@
 
 .animate {
     transition: all 0.3s ease-in-out;
+}
+
+.leasetype {
+    background-color: white;
+    color: #1672e2 !important;
+    border: 2px solid #1672e2 !important;
+}
+
+
+.listingbutton {
+    width: 100%;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.listingbutton a {
+    text-decoration: none;
+    color:black !important;
+}
+
+    .listingbutton a:hover {
+        
+        text-decoration: none;
+        color: black !important;
+    }
+
+.favorite {
+    border: 2px solid pink;
+}
+
+.message {
+    border: 2px solid orange;
+}
+
+.view {
+    border: 2px solid #25e025;
+}
+
+.card {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom:6px;
+}
+
+.title {
+    font-size:1.2em;
 }

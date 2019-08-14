@@ -22,6 +22,6 @@ export const appRoutes: Routes = [
     { path: 'mylistings', component: MylistingsComponent, canActivate: [AuthGuard], resolve: {listings: MylistingsResolver}},
     { path: 'mylistings/:id', component: MylistingsEditComponent, canActivate: [AuthGuard], resolve: {listing: MylistingsEditResolver}},
     { path: 'add', component: MylistingsAddComponent, canActivate: [AuthGuard]},
-    { path: 'map', component: MapComponent, canActivate: [AuthGuard]},
+    { path: 'map', component: MapComponent, canActivate: [AuthGuard], resolve: {listings: ListingsResolver}},
     { path: '**', redirectTo: 'home', pathMatch: 'full'}
 ]

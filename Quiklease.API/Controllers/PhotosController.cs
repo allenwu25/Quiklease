@@ -70,6 +70,9 @@ namespace Quiklease.API.Controllers
             if(!listingfromrepo.Photos.Any(u => u.IsMain)) {
                 photo.IsMain = true;
             }
+            if(listingfromrepo.Photos.Count == 0) {
+                listingfromrepo.PhotoUrl = photo.PhotoUrl;
+            }
 
             listingfromrepo.Photos.Add(photo);
 

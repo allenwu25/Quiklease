@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Listing } from '../_models/listing';
+import { User } from '../_models/user';
 
 
 @Injectable({
@@ -10,9 +11,12 @@ import { Listing } from '../_models/listing';
 })
 export class ListingService {
   baseUrl = environment.apiUrl;
-
+  
 
 constructor(private http: HttpClient) { }
+  getUsers(id): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'users/' + id);
+  }
 
   getListings(): Observable<Listing[]> {
     return this.http.get<Listing[]>(this.baseUrl + 'listings');

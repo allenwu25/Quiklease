@@ -11,6 +11,7 @@ export interface Listing {
     photoUrl: string;
     price: number;
     likes: number;
+    userId: number;
     rentFrom: Date;
     rentUntil: Date;
     roomsAvailable: number;

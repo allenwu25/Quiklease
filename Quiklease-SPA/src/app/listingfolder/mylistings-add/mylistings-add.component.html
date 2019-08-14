@@ -22,11 +22,12 @@
           <div class="mt-3">
               <label for="username">Listing Description</label>
               <div class="input-group">
-                  <input type="text" 
+                  <textarea
+                  rows="5"
                   [ngClass]="{'is-invalid' : addForm.get('description').errors && addForm.get('description').touched}"
                   class="form-control" 
                   formControlName="description" 
-                  placeholder="Listing Description">
+                  placeholder="Listing Description"></textarea>
                   <div class="invalid-feedback"> Please enter a description</div>
               </div>
             </div>
@@ -38,7 +39,7 @@
                     [ngClass]="{'is-invalid' : addForm.get('address').errors && addForm.get('address').touched}"
                     class="form-control" 
                     formControlName="address" 
-                    placeholder="Listing Address">
+                    placeholder="Eg. 102 Seagram Drive, Waterloo ON">
                   <div class="invalid-feedback" style="width: 100%;">
                     Listing address is required.
                   </div>
@@ -83,12 +84,17 @@
               <div class="row mt-3">
                   <div class="col-md-5 mb-3">
                     <label for="buildingType">Building Type</label>
-                    <select formControlName="description" class="custom-select d-block w-100" id="buildingType">
-                      <option value>Apartment / Condominium</option>
-                      <option>Detached House</option>
-                      <option>Semi-Detached House</option>
-                      <option>Townhouse</option>
+                    <select formControlName="buildingType"
+                    [ngClass]="{'is-invalid' : addForm.get('buildingType').errors && addForm.get('buildingType').touched}"
+                    class="custom-select d-block w-100">
+                      <option value="Apartment / Condominium">Apartment / Condominium</option>
+                      <option value="Detached House">Detached House</option>
+                      <option value="Semi-Detached House">Semi-Detached House</option>
+                      <option value="Townhouse">Townhouse</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Please select a building type
+                      </div>
                   </div>
                   <div class="col-md-4 mb-3">
                     <label for="state">Price per month</label>
@@ -117,10 +123,6 @@
                 <h4 class="mt-3">Your Contact Information</h4><br>
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label for="address2">Your Email Address</label>
-                  
-                </div>
-                <div class="col-md-6 mb-3">
                     <label for="address2">Your Phone Number <span class="text-muted">(Optional)</span></label>
                     <input 
                     type="text" 
@@ -139,4 +141,3 @@
   </div>
   <div class="col-md-2"></div>
 </div>
-

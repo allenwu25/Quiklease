@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
-
+import { AgmCoreModule } from '@agm/core';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
@@ -32,6 +33,7 @@ import { PhotoEditorComponent } from './listingfolder/photo-editor/photo-editor.
 import { MylistingsEditComponent } from './listingfolder/mylistings-edit/mylistings-edit.component';
 import { MylistingsEditResolver } from './_resolvers/mylistings-edit.resolver';
 import { LoginComponent } from './login/login.component';
+import { GeocodeService } from './_services/geocode.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -70,7 +72,11 @@ export function tokenGetter() {
       }),
       NgxGalleryModule,
       FileUploadModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      LeafletModule.forRoot(),
+      AgmCoreModule.forRoot({
+         apiKey: 'AIzaSyCHdRPgIRJpcEHmKMeP0T5uLLd1-HL4q28'
+      })
    ],
    providers: [
       AuthService,
@@ -81,7 +87,8 @@ export function tokenGetter() {
       ListingDetailResolver,
       ListingsResolver,
       MylistingsResolver,
-      MylistingsEditResolver
+      MylistingsEditResolver,
+      GeocodeService
    ],
    bootstrap: [
       AppComponent

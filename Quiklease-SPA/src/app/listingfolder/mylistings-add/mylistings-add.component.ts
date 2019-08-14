@@ -26,13 +26,13 @@ export class MylistingsAddComponent implements OnInit {
   createaddlistingsform() {
     this.addForm = this.fb.group({
       address: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: [''],
       title: ['', Validators.required],
       description: ['', Validators.required],
       rentFrom: ['', Validators.required],
       rentUntil: ['', Validators.required],
       price: ['', Validators.required],
-      buildingType: [''],
+      buildingType: ['', Validators.required],
       roomsAvailable: ['', Validators.required]
     });
   }
@@ -41,7 +41,8 @@ export class MylistingsAddComponent implements OnInit {
     if (this.addForm.valid) {
       this.listing = Object.assign({}, this.addForm.value);
       this.listingService.addlisting(this.listing).subscribe(() => {
-        this.alertifyService.success('Added Listings');
+        this.router.navigate(['/mylistings']);
+        this.alertifyService.success('Added new listing. Click edit to add photos!');
       }, error => {
         this.alertifyService.error(error);
       }

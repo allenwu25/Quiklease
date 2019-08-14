@@ -12,28 +12,17 @@
       <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/mylistings']">My Postings</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['/add']">Add Posting</a>
-          </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+            
+
     </ul>
 
-
+    <a *ngIf="loggedIn()" class="btn btn-success py-2 text-light mr-2" [routerLink]="['/add']">Add Listing</a>
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>
         Welcome {{authService.decodedToken?.unique_name}}
       </a>
       <div class="dropdown-menu" *dropdownMenu>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>User Admin</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
+        <a class="dropdown-item logoutclass" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
       </div>
     </div>
     

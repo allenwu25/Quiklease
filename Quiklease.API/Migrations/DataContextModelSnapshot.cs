@@ -29,7 +29,11 @@ namespace Quiklease.API.Migrations
 
                     b.Property<DateTime>("ExpiryDate");
 
+                    b.Property<decimal>("Latitude");
+
                     b.Property<int>("Likes");
+
+                    b.Property<decimal>("Longitude");
 
                     b.Property<string>("Phone");
 
