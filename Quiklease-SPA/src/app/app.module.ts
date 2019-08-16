@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { AgmCoreModule } from '@agm/core';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
@@ -73,7 +72,6 @@ export function tokenGetter() {
       NgxGalleryModule,
       FileUploadModule,
       ReactiveFormsModule,
-      LeafletModule.forRoot(),
       AgmCoreModule.forRoot({
          apiKey: 'AIzaSyCHdRPgIRJpcEHmKMeP0T5uLLd1-HL4q28'
       })

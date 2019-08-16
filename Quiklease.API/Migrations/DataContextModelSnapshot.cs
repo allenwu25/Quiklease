@@ -14,7 +14,8 @@ namespace Quiklease.API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854");
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Quiklease.API.Models.Listing", b =>
                 {
@@ -29,11 +30,7 @@ namespace Quiklease.API.Migrations
 
                     b.Property<DateTime>("ExpiryDate");
 
-                    b.Property<decimal>("Latitude");
-
                     b.Property<int>("Likes");
-
-                    b.Property<decimal>("Longitude");
 
                     b.Property<string>("Phone");
 

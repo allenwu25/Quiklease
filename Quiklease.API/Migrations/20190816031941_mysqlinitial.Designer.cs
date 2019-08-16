@@ -9,14 +9,15 @@ using Quiklease.API.Data;
 namespace Quiklease.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190803155915_PhotoUrl")]
-    partial class PhotoUrl
+    [Migration("20190816031941_mysqlinitial")]
+    partial class mysqlinitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854");
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Quiklease.API.Models.Listing", b =>
                 {
@@ -24,6 +25,8 @@ namespace Quiklease.API.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
+
+                    b.Property<string>("BuildingType");
 
                     b.Property<string>("Description");
 
@@ -38,6 +41,12 @@ namespace Quiklease.API.Migrations
                     b.Property<DateTime>("PostedDate");
 
                     b.Property<decimal>("Price");
+
+                    b.Property<DateTime>("RentFrom");
+
+                    b.Property<DateTime>("RentUntil");
+
+                    b.Property<int>("RoomsAvailable");
 
                     b.Property<string>("Title");
 
@@ -63,7 +72,7 @@ namespace Quiklease.API.Migrations
 
                     b.Property<string>("PhotoUrl");
 
-                    b.Property<int>("PublicId");
+                    b.Property<string>("PublicId");
 
                     b.HasKey("Id");
 
